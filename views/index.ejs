@@ -17,12 +17,27 @@
 
     <!-- Mood Picker Pop-up -->
     <section class="mood-picker">
-        <%= new Date().toDateString();%>
-        <% let year = new Date().getFullYear(); %>
-        <% let month = new Date().getMonth() + 1; %>
-        <% let day = new Date().getDate(); %>
-        <% let today = `${year}-${day}-${month}`; %>
-        <%= today %>
+        <form id="mood-otd" action="/motd" method="POST">
+            <!-- Date -->
+            <!-- Fix values and max date -->
+            <label for="date">Choose date:</label>
+            <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
+            <div class="selectContainer block">
+                <!-- Positive -->
+                <input type="radio" id="overallMood" name="overallPositive" value="positive" required>
+                <label for="overallPositive" >Positive</label>
+                <!-- Neutral -->
+                <input type="radio" id="overallMood" name="overallNeutral" value="neutral" required>
+                <label for="overallNeutral" >Neutral</label>
+                <!-- Negative -->
+                <input type="radio" id="overallMood" name="overallNegative" value="negative" required>
+                <label for="overallNegative" >Negative</label>
+            </div>
+        </form>
+
+        <!-- Button -->
+        <button form="mood-otd" type="submit" class="block">Submit</button>
+
     </section>
 
     <!-- Mood display of year -->
