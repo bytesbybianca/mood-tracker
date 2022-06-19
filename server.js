@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
-const {sendFile} = require('express/lib/response');
+const { sendFile } = require('express/lib/response');
 require('dotenv').config()
 
 const PORT = process.env.PORT || 8000
@@ -15,7 +15,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to database ${dbName}`)
         db = client.db(dbName)
-        // const peopleCollection = db.collection('people')
+        const moodCollection = db.collection('motd')
 
         app.set('view engine', 'ejs')
         app.use(express.static('public'))
@@ -24,7 +24,21 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         app.use(express.json())
 
         app.get('/', (req, res) => {
-            res.render('index.ejs')
+            moodCollection.find().toArray()
+            .then(results => {
+                console.log(results)
+                res.render('index.ejs', { motd: results })
+              })
+              .catch(error => console.error(error))
+        })
+
+        app.post('/motd', (req, res) => {
+            moodCollection.insertOne(req.body)
+              .then(result => {
+                res.redirect('/')
+                // console.log(result)
+              })
+              .catch(error => console.error(error))
         })
         
         app.listen(PORT, (req, res) => {

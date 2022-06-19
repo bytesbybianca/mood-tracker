@@ -15,37 +15,109 @@
         </h1>
     </header>
 
-    <!-- Mood Picker Pop-up -->
+    <%# <!-- Mood Picker Pop-up --> %>
     <section class="mood-picker">
         <form id="mood-otd" action="/motd" method="POST">
-            <!-- Date -->
-            <!-- Fix values and max date -->
+            <%# <!-- Date --> %>
+            <%# <!-- Fix values and max date --> %>
             <label for="date">Choose date:</label>
             <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
             <div class="selectContainer block">
-                <!-- Positive -->
-                <input type="radio" id="overallMood" name="overallPositive" value="positive" required>
+                <%# <!-- Positive --> %>
+                <input type="radio" name="overallMood" id="overallPositive" value="positive" required>
                 <label for="overallPositive" >Positive</label>
-                <!-- Neutral -->
-                <input type="radio" id="overallMood" name="overallNeutral" value="neutral" required>
+                <%# <!-- Neutral --> %>
+                <input type="radio" name="overallMood" id="overallNeutral" value="neutral" required>
                 <label for="overallNeutral" >Neutral</label>
-                <!-- Negative -->
-                <input type="radio" id="overallMood" name="overallNegative" value="negative" required>
+                <%# <!-- Negative --> %>
+                <input type="radio" name="overallMood" id="overallNegative" value="negative" required>
                 <label for="overallNegative" >Negative</label>
             </div>
         </form>
-
-        <!-- Button -->
+        <%# <!-- Button --> %>
         <button form="mood-otd" type="submit" class="block">Submit</button>
 
     </section>
+    <%# <!-- variables for today --> %>
+    <% let today = new Date() %>
+    <% let year = today.getFullYear() %>
+    <% let month = today.getMonth() + 1 %>
+    <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
+    <% let day = today.getDate() %>
 
-    <!-- Mood display of year -->
-    <section class="year">
-        <div class="day">
-            hi
-        </div>
+    <%# <!-- variables for start and end of year --> %>
+    <% let dayOfYear = new Date(year, 0, 1) %>
+    <% let lastDayOfYear = new Date(year, 11, 31) %>
+
+    <%# <!-- calculating days of the year --> %>
+    <% let daysInYear = ((year % 4 === 0 && year % 100 > 0) || year % 400 == 0) ? 366 : 365; %>
+    <p>
+        year: <%= year %>
+        <br>
+        days in year: <%= daysInYear %>
+        <br>
+        month num: <%= month %>
+        <br>
+        month name: <%= monthName %>
+        <br>
+        day: <%= monthName %>
+    </p>
+
+    <%# <!-- Loop for all days in the year for diplay on boxes, format short month name and date --> %>
+    <% let allDaysOfYear = []; %>
+    <%# <!-- Loop for all days in the year for id name, formatted YYYY-MM-DD --> %>
+    <% let idsDaysOfYear = []; %>
+
+    <%# <!-- format days and months to match calendar values --> %>
+    <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
+        <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
+        <% let idDay = new Date(dayOfYear).getDate() %>
+        
+            <% if (idDay < 10) { %>
+                <% idDay = '0' + idDay; %>
+            <% } %>
+            
+            <% if (idMonth < 10) { %>
+                <% idMonth = '0' + idMonth; %>
+            <% }  %>
+
+        <%# <!-- push into arrays --> %>
+        <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'short' })} ${new Date(dayOfYear).getDate()}`); %>
+        <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
+    <% } %>
+
+    <p>
+        <%= idsDaysOfYear[idsDaysOfYear.length -1] %>
+    </p>
+
+    <%# <!-- Mood display of year --> %>
+    <section class="moodsForYear">
+        <%# <!-- loop to display a box for each day of the year --> %>
+        <% for (let i = 0; i < allDaysOfYear.length; i++) {%>
+            <div class="day" id="<%= 'date_' + idsDaysOfYear[i] %>">
+                <%= allDaysOfYear[i] %>
+                <% for(let j = 0; j < motd.length; j++) {%>
+                    <% if(motd[j].date == idsDaysOfYear[i]) {%>
+                        <span class="dayMood">
+                            <%= motd[j].overallMood %>
+                        </span>
+                    <% } %>
+                <% } %>
+            </div>
+        <% } %>
     </section>
+
+    <ul class="mood">
+        <%# <!-- Loop through quotes --> %>
+        <% for(var i = 0; i < motd.length; i++) {%>
+            <li class="moods">
+            <%# <!-- Output name from the iterated quote object --> %>
+            <span><%= motd[i].date %></span>:
+            <%# <!-- Output quote from the iterated quote object --> %>
+            <span><%= motd[i].overallMood %></span>
+            </li>
+        <% } %>
+        </ul>
 
     <script src="/main.js"></script>
 </body>

@@ -25,14 +25,27 @@ body {
      background-color: pink;
 }
 
+.moodsForYear {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 5px;
+     width: 95vw;
+     justify-content: center;
+     margin: 0 auto;
+}
+
 .day {
      background-color: gray;
-     width: 100px;
-     height: 100px;
+     width: 50px;
+     height: 50px;
 }
 
 .mood-picker {
      background-color: rgb(244, 171, 244);
+}
+
+#date_2022-08-15 {
+     background-color: red;
 }
 
 /******************************************
