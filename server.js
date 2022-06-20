@@ -23,6 +23,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         app.use(express.urlencoded({ extended: true }))
         app.use(express.json())
 
+        // render db results
         app.get('/', (req, res) => {
             moodCollection.find().toArray()
             .then(results => {
@@ -32,6 +33,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
               .catch(error => console.error(error))
         })
 
+        // post db results
         app.post('/motd', (req, res) => {
             moodCollection.insertOne(req.body)
               .then(result => {
@@ -40,6 +42,26 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
               })
               .catch(error => console.error(error))
         })
+
+        // // FIX THIS
+        // // update db results
+        // app.put('/motd', (req, res) => {
+        //     moodCollection.findOneAndUpdate(
+        //         { },
+        //         {
+        //           $set: {
+        //             overallMood: req.body.status,
+        //           }
+        //         },
+        //         {
+        //           upsert: true
+        //         }
+        //       )
+        //         .then(result => {
+        //             res.json('Success')
+        //         })
+        //         .catch(error => console.error(error))
+        // })
         
         app.listen(PORT, (req, res) => {
             console.log(`Server running on ${PORT}. Betta go catch it!`)
