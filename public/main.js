@@ -1,7 +1,7 @@
 let today = new Date()
 let year = today.getFullYear();
 let month = today.getMonth() + 1;
-let monthName = today.toLocaleString('default', { month: 'long' })
+const monthName = today.toLocaleString('default', { month: 'long' })
 let day = today.getDate();
 
 if (day < 10) {
@@ -14,11 +14,35 @@ if (day < 10) {
 
 today = `${year}-${month}-${day}`
 
-document.querySelector('#date').setAttribute('max', today);
-document.querySelector('#date').setAttribute('value', today);
+let setDate = document.querySelector('#date')
+setDate.setAttribute('max', today);
+setDate.setAttribute('value', today);
 
-// let daysOfYear = [];
-// for (let d = new Date(2022, 0, 1); d <= new Date(2022, 11, 31); d.setDate(d.getDate() + 1)) {
-//     daysOfYear.push(`${new Date(d).toLocaleString('default', { month: 'long' })} ${new Date(d).getDate()}`);
-// }
-// console.log(`${daysOfYear}`)
+let dayBox = document.querySelectorAll('.dayBox')
+const moodPickerForm = document.querySelector('.moodPicker')
+const test = document.querySelector('.test')
+
+dayBox.forEach(box => box.addEventListener('click', () => {
+    let idBoxClicked = box.id.slice(5)
+    moodPickerForm.classList.toggle('hidden')
+    setDate.setAttribute('value', idBoxClicked);
+}))
+
+// // fix this
+// const updateMood = document.querySelector('.dayMood')
+
+// updateMood.addEventListener('click', () => {
+//     fetch('/motd', {
+//       method: 'put',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         overallMood: 'changed'
+//       })
+//     })
+//     .then(res => {
+//         if (res.ok) return res.json()
+//       })
+//     .then(response => {
+//         window.location.reload(true) // refreshing the browser but change later to update the DOM
+//     })
+//   })

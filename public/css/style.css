@@ -25,6 +25,10 @@ body {
      background-color: pink;
 }
 
+.hidden {
+     display: none;
+}
+
 .moodsForYear {
      display: flex;
      flex-wrap: wrap;
@@ -34,13 +38,13 @@ body {
      margin: 0 auto;
 }
 
-.day {
+.dayBox {
      background-color: gray;
      width: 50px;
      height: 50px;
 }
 
-.mood-picker {
+.moodPicker {
      background-color: rgb(244, 171, 244);
 }
 

@@ -16,7 +16,7 @@
     </header>
 
     <%# <!-- Mood Picker Pop-up --> %>
-    <section class="mood-picker">
+    <section class="moodPicker hidden">
         <form id="mood-otd" action="/motd" method="POST">
             <%# <!-- Date --> %>
             <%# <!-- Fix values and max date --> %>
@@ -94,7 +94,7 @@
     <section class="moodsForYear">
         <%# <!-- loop to display a box for each day of the year --> %>
         <% for (let i = 0; i < allDaysOfYear.length; i++) {%>
-            <div class="day" id="<%= 'date_' + idsDaysOfYear[i] %>">
+            <div class="dayBox" id="<%= 'date_' + idsDaysOfYear[i] %>">
                 <%= allDaysOfYear[i] %>
                 <% for(let j = 0; j < motd.length; j++) {%>
                     <% if(motd[j].date == idsDaysOfYear[i]) {%>
