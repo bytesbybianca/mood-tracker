@@ -22,34 +22,60 @@
 /*******************************************/
 
 body {
-     background-color: pink;
+     background-color: #12171D;
+     color: #CAD0D7;
 }
 
 .hidden {
      display: none;
 }
 
+#wrapper {
+     /* display: flex; */
+     position: relative;
+     min-height: 100vh;
+     width: 100%;
+}
+
 .moodsForYear {
      display: flex;
      flex-wrap: wrap;
-     gap: 5px;
+     gap: .45rem;
      width: 95vw;
      justify-content: center;
      margin: 0 auto;
 }
 
 .dayBox {
-     background-color: gray;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: #1E2126;
+     border-radius: 10%;
      width: 50px;
      height: 50px;
 }
 
-.moodPicker {
-     background-color: rgb(244, 171, 244);
+.shade {
+     min-height: 100vh;
+     min-width: 100vw;
+     top: 0;
+     position: fixed;
+     background-color: rgba(0, 0, 0, .4);
+     z-index: 1;
 }
 
-#date_2022-08-15 {
-     background-color: red;
+.moodPicker {
+     background-color: rgba(0, 0, 0, .95);
+     width: 40rem;
+     height: 20rem;
+     position: fixed;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     margin: auto;
+     z-index: 2;
 }
 
 /******************************************
@@ -66,3 +92,17 @@ footer {
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+h1 {
+     text-align: center;
+}
+
+.moodPicker {
+     padding: 2rem;
+}
+
+.close-button {
+     background-color: transparent;
+     border: 0px solid red;
+     color: white;
+}

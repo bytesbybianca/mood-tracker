@@ -20,14 +20,45 @@ setDate.setAttribute('value', today);
 
 let dayBox = document.querySelectorAll('.dayBox')
 const moodPickerForm = document.querySelector('.moodPicker')
-const test = document.querySelector('.test')
+const shade = document.querySelector('.shade')
+const closeButton = document.querySelector('.close-button')
 
 dayBox.forEach(box => box.addEventListener('click', () => {
     let idBoxClicked = box.id.slice(5)
     moodPickerForm.classList.toggle('hidden')
+    shade.classList.toggle('hidden')
     setDate.setAttribute('value', idBoxClicked);
 }))
 
+shade.addEventListener('click', () => {
+    moodPickerForm.classList.toggle('hidden')
+    shade.classList.toggle('hidden')
+})
+
+closeButton.addEventListener('click', () => {
+    moodPickerForm.classList.toggle('hidden')
+    shade.classList.toggle('hidden')
+})
+
+function setBoxColor() {
+    fetch('/motd')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // console.log(data[0].overallMood)
+        data.forEach(entry => {
+            if(entry.overallMood === 'neutral') {
+                document.querySelector(`#date_${entry.date}`).style.backgroundColor = "gray";
+            } else if(entry.overallMood === 'positive') {
+                document.querySelector(`#date_${entry.date}`).style.backgroundColor = "green";
+            } else if(entry.overallMood === 'negative') {
+                document.querySelector(`#date_${entry.date}`).style.backgroundColor = "red";
+            }
+        })
+    })
+}
+
+setBoxColor()
 // // fix this
 // const updateMood = document.querySelector('.dayMood')
 
