@@ -33,6 +33,14 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
               .catch(error => console.error(error))
         })
 
+        app.get('/motd', (req, res) => {
+            moodCollection.find().toArray()
+            .then(results => {
+                res.json(results)
+              })
+              .catch(error => console.error(error))
+        })
+
         // post db results
         app.post('/motd', (req, res) => {
             moodCollection.insertOne(req.body)
