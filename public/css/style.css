@@ -56,6 +56,12 @@ body {
      height: 50px;
 }
 
+.dayBox:hover {
+     background-color: #3c414a;
+     transition: all .5s ease-in-out;
+     cursor: pointer;
+}
+
 .shade {
      min-height: 100vh;
      min-width: 100vw;
