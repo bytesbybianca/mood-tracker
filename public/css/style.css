@@ -59,7 +59,7 @@ body {
 .dayBox:hover {
      background-color: #3c414a;
      transition: all .5s ease-in-out;
-     cursor: pointer;
+     cursor: g;
 }
 
 .shade {
