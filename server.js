@@ -60,6 +60,19 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
               })
               .catch(error => console.error(error))
         })
+
+        app.delete('/motd', (req, res) => {
+            moodCollection.deleteOne(
+              { date: req.body.date } // don't need to hardcode bx it's passed from fetch in main.js
+            )
+            .then(result => {
+                if (result.deletedCount === 0) {
+                  return res.json('No more monsters')
+                }
+                res.json(`Got em!`)
+              })
+              .catch(error => console.error(error))
+          })
         
         app.listen(PORT, (req, res) => {
             console.log(`Server running on ${PORT}. Betta go catch it!`)

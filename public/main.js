@@ -1,3 +1,4 @@
+// defining dates
 let today = new Date()
 let year = today.getFullYear();
 let month = today.getMonth() + 1;
@@ -14,6 +15,7 @@ if (day < 10) {
 
 today = `${year}-${month}-${day}`
 
+// setting max date as today
 let setDate = document.querySelector('#date')
 setDate.setAttribute('max', today);
 setDate.setAttribute('value', today);
@@ -40,26 +42,6 @@ closeButton.addEventListener('click', () => {
     shade.classList.toggle('hidden')
 })
 
-// function setBoxColor() {
-//     fetch('/motd')
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(data)
-//         // console.log(data[0].overallMood)
-//         data.forEach(entry => {
-//             if(entry.overallMood === 'neutral') {
-//                 document.querySelector(`#date_${entry.date}`).style.backgroundColor = "gray";
-//             } else if(entry.overallMood === 'positive') {
-//                 document.querySelector(`#date_${entry.date}`).style.backgroundColor = "green";
-//             } else if(entry.overallMood === 'negative') {
-//                 document.querySelector(`#date_${entry.date}`).style.backgroundColor = "red";
-//             }
-//         })
-//     })
-// }
-
-// setBoxColor()
-
 function setBoxColorClass() {
     fetch('/motd')
     .then(res => res.json())
@@ -79,3 +61,25 @@ function setBoxColorClass() {
 }
 
 setBoxColorClass()
+
+const deleteEntry = document.querySelector('#delete')
+deleteEntry.addEventListener('click', _ => {
+    
+    fetch('/motd', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: setDate.value
+      })
+    })
+      .then(res => {
+          console.log(setDate.value)
+        if (res.ok) return res.json()
+      })
+      .then(response => {
+            window.location.reload(true)
+        })
+        .catch(error => console.error(error))
+  })
+
+  console.log(setDate.value)
