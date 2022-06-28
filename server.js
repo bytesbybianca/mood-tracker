@@ -41,35 +41,25 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
               .catch(error => console.error(error))
         })
 
-        // post db results
+        // post and update db results
         app.post('/motd', (req, res) => {
-            moodCollection.insertOne(req.body)
+            moodCollection.updateOne(
+                { date: req.body.date },
+                {
+                  $set: {
+                    overallMood: req.body.overallMood,
+                  }
+                },
+                {
+                  upsert: true
+                }
+              )
               .then(result => {
                 res.redirect('/')
                 // console.log(result)
               })
               .catch(error => console.error(error))
         })
-
-        // // FIX THIS
-        // // update db results
-        // app.put('/motd', (req, res) => {
-        //     moodCollection.findOneAndUpdate(
-        //         { },
-        //         {
-        //           $set: {
-        //             overallMood: req.body.status,
-        //           }
-        //         },
-        //         {
-        //           upsert: true
-        //         }
-        //       )
-        //         .then(result => {
-        //             res.json('Success')
-        //         })
-        //         .catch(error => console.error(error))
-        // })
         
         app.listen(PORT, (req, res) => {
             console.log(`Server running on ${PORT}. Betta go catch it!`)
