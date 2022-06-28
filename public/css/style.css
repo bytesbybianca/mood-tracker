@@ -39,26 +39,29 @@ body {
 
 .moodsForYear {
      display: flex;
+     flex-direction: column;
      flex-wrap: wrap;
-     gap: .45rem;
-     width: 95vw;
+     gap: .25rem;
+     height: 180px;
+     width: 90%;
      justify-content: center;
+     /* align-items: center; */
+     align-content: center;
      margin: 0 auto;
 }
 
 .dayBox {
      display: flex;
-     align-items: center;
-     justify-content: center;
      background-color: #1E2126;
      border-radius: 10%;
-     width: 30px;
-     height: 30px;
+     border: 1px solid rgba(128, 128, 128, 0.05);
+     width: 15px;
+     height: 15px;
      position: relative;
 }
 
 .dayBox:hover {
-     background-color: #000000;
+     background-color: rgba(223, 223, 223, .2);
      transition: all .5s ease-in-out;
      cursor: g;
 }
@@ -67,11 +70,14 @@ body {
      background-color: white;
      color: black;
      position: absolute;
-     top: -2rem;
-     width: 5rem;
-     padding: .5rem;
+     top: -2.1rem;
+     height: 1.6rem;
+     width: 7rem;
+     padding: .35rem;
      border-radius: 5px;
      z-index: 3;
+     text-align: center;
+     font-size: .95rem;
 }
 
 .dayBoxPointer {
@@ -81,9 +87,9 @@ body {
 	margin: 0 auto;
 	transform: rotate(45deg);
 	border-radius: 0 0 2px 0;
-	margin-top: -30px;
+	margin-top: -15px;
 	position: relative;
-	left: calc(0.5vw - 10px);
+	left: calc(0.5vw - 0px);
 }
 
 .shade {
@@ -139,12 +145,15 @@ h1 {
 
 .positive {
      background-color: rgb(87, 135, 87);
+     border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
 .neutral {
      background-color: rgb(121, 121, 121);
+     border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
 .negative {
      background-color: rgb(137, 42, 58);
+     border: 1px solid rgba(128, 128, 128, 0.05);
 }

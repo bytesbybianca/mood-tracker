@@ -49,6 +49,7 @@
         <% let today = new Date() %>
         <% let year = today.getFullYear() %>
         <% let month = today.getMonth() + 1 %>
+        <% let dayOfWeek = today.getDay() %>
         <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
         <% let day = today.getDate() %>
 
@@ -75,7 +76,7 @@
                 <% }  %>
 
             <%# <!-- push into arrays --> %>
-            <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'short' })} ${new Date(dayOfYear).getDate()}`); %>
+            <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'long' })} ${new Date(dayOfYear).getDate()}`); %>
             <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
         <% } %>
 
