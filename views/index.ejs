@@ -84,24 +84,14 @@
             <%# <!-- loop to display a box for each day of the year --> %>
             <% for (let i = 0; i < allDaysOfYear.length; i++) {%>
                 <div class="dayBox" id="<%= 'date_' + idsDaysOfYear[i] %>">
-                    <span class="dayBoxDate">
+                    <div class="dayBoxBubble <%= 'bubble_' + idsDaysOfYear[i] %> hidden">
                         <%= allDaysOfYear[i].toLowerCase() %>
-                    </span>
+                    </div>
+                    <div class="dayBoxPointer <%= 'bubble_' + idsDaysOfYear[i] %> hidden">
+                    </div>
                 </div>
             <% } %>
         </section>
-
-        <ul class="mood">
-            <%# <!-- Loop through quotes --> %>
-            <% for(var i = 0; i < motd.length; i++) {%>
-                <li class="moods">
-                <%# <!-- Output name from the iterated quote object --> %>
-                <span><%= motd[i].date %></span>:
-                <%# <!-- Output quote from the iterated quote object --> %>
-                <span><%= motd[i].overallMood %></span>
-                </li>
-            <% } %>
-            </ul>
     </div>
 
     <script src="/main.js"></script>

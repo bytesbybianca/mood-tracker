@@ -25,6 +25,18 @@ const moodPickerForm = document.querySelector('.moodPicker')
 const shade = document.querySelector('.shade')
 const closeButton = document.querySelector('.close-button')
 
+dayBox.forEach(box => box.addEventListener('mouseover', () => {
+    let idDate = box.id.slice(5)
+    let dayBoxBubble = document.querySelectorAll(`.bubble_${idDate}`)
+    dayBoxBubble.forEach(bubble => bubble.classList.toggle('hidden'))
+}))
+
+dayBox.forEach(box => box.addEventListener('mouseout', () => {
+    let idDate = box.id.slice(5)
+    let dayBoxBubble = document.querySelectorAll(`.bubble_${idDate}`)
+    dayBoxBubble.forEach(bubble => bubble.classList.toggle('hidden'))
+}))
+
 dayBox.forEach(box => box.addEventListener('click', () => {
     let idBoxClicked = box.id.slice(5)
     moodPickerForm.classList.toggle('hidden')
@@ -46,8 +58,6 @@ function setBoxColorClass() {
     fetch('/motd')
     .then(res => res.json())
     .then(data => {
-        console.log(data)
-        // console.log(data[0].overallMood)
         data.forEach(entry => {
             if(entry.overallMood === 'neutral') {
                 document.querySelector(`#date_${entry.date}`).classList.add('neutral');
