@@ -86,13 +86,6 @@
                     <span class="dayBoxDate">
                         <%= allDaysOfYear[i].toLowerCase() %>
                     </span>
-                    <% for(let j = 0; j < motd.length; j++) {%>
-                        <% if(motd[j].date == idsDaysOfYear[i]) {%>
-                            <span class="dayMood">
-                                <%= motd[j].overallMood %>
-                            </span>
-                        <% } %>
-                    <% } %>
                 </div>
             <% } %>
         </section>

@@ -57,7 +57,7 @@ body {
 }
 
 .dayBox:hover {
-     background-color: #3c414a;
+     background-color: #000000;
      transition: all .5s ease-in-out;
      cursor: g;
 }
@@ -111,4 +111,16 @@ h1 {
      background-color: transparent;
      border: 0px solid red;
      color: white;
+}
+
+.positive {
+     background-color: rgb(87, 135, 87);
+}
+
+.neutral {
+     background-color: rgb(121, 121, 121);
+}
+
+.negative {
+     background-color: rgb(137, 42, 58);
 }
