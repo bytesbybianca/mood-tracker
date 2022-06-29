@@ -34,7 +34,7 @@
                weekdays[4] = "Thursday";
                weekdays[5] = "Friday";
                weekdays[6] = "Saturday"; %>
-       <% let dayOfWeek = weekdays[today.getDay()] %>
+            <% let dayOfWeek = weekdays[today.getDay()] %>
    
            <%# <!-- variables for start and end of year --> %>
            <% let dayOfYear = new Date(year, 0, 1) %>
@@ -44,12 +44,15 @@
            <% let allDaysOfYear = []; %>
            <%# <!-- Loop for all days in the year for id name, formatted YYYY-MM-DD --> %>
            <% let idsDaysOfYear = []; %>
+           <% let yearObj = new Array() %>
    
            <%# <!-- format days and months to match calendar values --> %>
            <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
                <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
                <% let idDay = new Date(dayOfYear).getDate() %>
-               
+               <% let dayCounter = 1 %>
+               <% let i = 0 %>
+               <% dayOfWeek = weekdays[dayOfYear.getDay()] %>
                    <% if (idDay < 10) { %>
                        <% idDay = '0' + idDay; %>
                    <% } %>
@@ -59,10 +62,31 @@
                    <% }  %>
    
                <%# <!-- push into arrays --> %>
-               <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'long' })} ${new Date(dayOfYear).getDate()}`); %>
                <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
+               <% yearObj.push(yearObj[i]
+                    = {
+                        full_date: `${year}-${idMonth}-${idDay}`,
+                        month_long: `${new Date(dayOfYear).toLocaleString('default', { month: 'long' })}`,
+                        month_short: `${new Date(dayOfYear).toLocaleString('default', { month: 'short' })}`,
+                        date: `${new Date(dayOfYear).getDate()}`,
+                        year: year,
+                        day: dayOfWeek,
+                        day_of_year: dayCounter,
+                      })
+                %>
+                <% dayCounter++ %>
+                <% i++ %>
            <% } %>
-
+        <ul>
+           <%# for(const key in yearObj[1]) { %>
+                <li><%#= `${key}: ${yearObj[1][key]}` %></li>
+            <%# } %>
+        </ul>
+         <ul>
+            <%# for(let i = 0; i < yearObj.length; i++) { %>
+                 <li><%#= yearObj[i].month_long %></li>
+             <%# } %>
+         </ul>
         <%# <!-- Mood Picker Pop-up --> %>
         <div class="pop-up-container">
             <section class="pop-up">
@@ -98,14 +122,13 @@
                 </div>
             </section>
         </div>
-
         <%# <!-- Mood display of year --> %>
         <section class="moodsForYear">
             <%# <!-- loop to display a box for each day of the year --> %>
-            <% for (let i = 0; i < allDaysOfYear.length; i++) {%>
+            <% for (let i = 0; i < idsDaysOfYear.length; i++) {%>
                 <div class="dayBox" id="<%= 'date_' + idsDaysOfYear[i] %>">
                     <div class="dayBoxBubble <%= 'bubble_' + idsDaysOfYear[i] %>">
-                        <%= allDaysOfYear[i].toLowerCase() %>
+                        <%= `${yearObj[i].month_long.toLowerCase()} ${yearObj[i].date}` %>
                     </div>
                     <div class="dayBoxPointer <%= 'bubble_' + idsDaysOfYear[i] %>">
                     </div>
