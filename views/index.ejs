@@ -17,33 +17,34 @@
         </header>
 
         <%# <!-- Mood Picker Pop-up --> %>
-        <div class="shade hidden"></div>
-        <section class="moodPicker hidden">
-            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
-            </button>
-            
-            <form id="mood-otd" action="/motd" method="POST">
-                <%# <!-- Date --> %>
-                <%# <!-- Fix values and max date --> %>
-                <label for="date">Choose date:</label>
-                <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
-                <div class="selectContainer block">
-                    <%# <!-- Positive --> %>
-                    <input type="radio" name="overallMood" id="overallPositive" value="positive" required>
-                    <label for="overallPositive" >Positive</label>
-                    <%# <!-- Neutral --> %>
-                    <input type="radio" name="overallMood" id="overallNeutral" value="neutral" required>
-                    <label for="overallNeutral" >Neutral</label>
-                    <%# <!-- Negative --> %>
-                    <input type="radio" name="overallMood" id="overallNegative" value="negative" required>
-                    <label for="overallNegative" >Negative</label>
-                </div>
-            </form>
-            <%# <!-- Button --> %>
-            <button form="mood-otd" type="submit">Submit</button>
-            <button id="delete">Delete entry</button>
-        </section>
+        <div class="pop-up-container">
+            <section class="pop-up">
+                <button id="close" aria-label="Dismiss alert" type="button" data-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+                <form id="mood-otd" action="/motd" method="POST">
+                    <%# <!-- Date --> %>
+                    <%# <!-- Fix values and max date --> %>
+                    <label for="date">Choose date:</label>
+                    <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
+                    <div class="selectContainer block">
+                        <%# <!-- Positive --> %>
+                        <input type="radio" name="overallMood" id="overallPositive" value="positive" required>
+                        <label for="overallPositive" >Positive</label>
+                        <%# <!-- Neutral --> %>
+                        <input type="radio" name="overallMood" id="overallNeutral" value="neutral" required>
+                        <label for="overallNeutral" >Neutral</label>
+                        <%# <!-- Negative --> %>
+                        <input type="radio" name="overallMood" id="overallNegative" value="negative" required>
+                        <label for="overallNegative" >Negative</label>
+                    </div>
+                </form>
+                <%# <!-- Button --> %>
+                <button form="mood-otd" type="submit">Submit</button>
+                <button id="delete">Delete entry</button>
+            </section>
+        </div>
 
         <%# <!-- variables for today --> %>
         <% let today = new Date() %>
