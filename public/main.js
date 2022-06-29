@@ -56,6 +56,8 @@ for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate(
      i++ 
 } 
 
+console.log(yearObj[0])
+
 // setting max date as today
 const setDate = document.querySelector('#date')
 setDate.setAttribute('max', todayFormatted);
@@ -96,16 +98,24 @@ dayBox.forEach(box => box.addEventListener('mouseout', () => {
 // Click box to reveal pop up box
 // When you click on any of the boxes,
 dayBox.forEach(box => box.addEventListener('click', () => {
+    // isolate number from class name to target index in yearObj
+    let dayBoxDate = box.className.split(' ').filter(x => Number(x) || x == '0').toString()
     // define the date from the box's id ('date_' + YYYY-MM-DD)
     let idBoxClicked = box.id.slice(5)
     // set the value of date picker to the date clicked
     setDate.setAttribute('value', idBoxClicked);
     let dateErrorBubble = document.querySelector(`.error_${idBoxClicked}`)
+    // if date is today or in the past, show pop up box
     if(idBoxClicked <= todayFormatted) {
         // add class 'show' pop up box
         popUpContainer.classList.add('show');
+        // add day of the week in pop up box
+        document.querySelector('#pop-up-day').textContent = `${yearObj[dayBoxDate].day}`
+        // add month, date, year in pop up box
+        document.querySelector('#pop-up-date').textContent = `${yearObj[dayBoxDate].month_long} ${yearObj[dayBoxDate].date}, ${yearObj[dayBoxDate].year}`
+    // if date is in the future,
     } else if(idBoxClicked > todayFormatted){
-        console.log(idBoxClicked > todayFormatted)
+        // show date error
         dateErrorBubble.classList.add('show');
     }
 }))

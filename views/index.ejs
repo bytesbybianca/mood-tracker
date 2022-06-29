@@ -19,7 +19,7 @@
             </h1>
         </header>
 
-           <%# <!-- variables for today --> %>
+           <%# variables for today %>
            <% let today = new Date() %>
            <% let year = today.getFullYear() %>
            <% let month = today.getMonth() + 1 %>
@@ -36,17 +36,16 @@
                weekdays[6] = "Saturday"; %>
             <% let dayOfWeek = weekdays[today.getDay()] %>
    
-           <%# <!-- variables for start and end of year --> %>
+           <%# variables for start and end of year %>
            <% let dayOfYear = new Date(year, 0, 1) %>
            <% let lastDayOfYear = new Date(year, 11, 31) %>
    
-           <%# <!-- Loop for all days in the year for diplay on boxes, format short month name and date --> %>
-           <% let allDaysOfYear = []; %>
-           <%# <!-- Loop for all days in the year for id name, formatted YYYY-MM-DD --> %>
+           <%# Loop for all days in the year for diplay on boxes, format short month name and date %>
+           <%# Loop for all days in the year for id name, formatted YYYY-MM-DD %>
            <% let idsDaysOfYear = []; %>
            <% let yearObj = new Array() %>
    
-           <%# <!-- format days and months to match calendar values --> %>
+           <%# format days and months to match calendar values %>
            <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
                <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
                <% let idDay = new Date(dayOfYear).getDate() %>
@@ -61,10 +60,9 @@
                        <% idMonth = '0' + idMonth; %>
                    <% }  %>
    
-               <%# <!-- push into arrays --> %>
+               <%# push into arrays %>
                <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
-               <% yearObj.push(yearObj[i]
-                    = {
+               <% yearObj.push({
                         full_date: `${year}-${idMonth}-${idDay}`,
                         month_long: `${new Date(dayOfYear).toLocaleString('default', { month: 'long' })}`,
                         month_short: `${new Date(dayOfYear).toLocaleString('default', { month: 'short' })}`,
@@ -77,17 +75,8 @@
                 <% dayCounter++ %>
                 <% i++ %>
            <% } %>
-        <ul>
-           <%# for(const key in yearObj[1]) { %>
-                <li><%#= `${key}: ${yearObj[1][key]}` %></li>
-            <%# } %>
-        </ul>
-         <ul>
-            <%# for(let i = 0; i < yearObj.length; i++) { %>
-                 <li><%#= yearObj[i].month_long %></li>
-             <%# } %>
-         </ul>
-        <%# <!-- Mood Picker Pop-up --> %>
+
+        <%# Mood Picker Pop-up %>
         <div class="pop-up-container">
             <section class="pop-up">
                 <div class="close-container">
@@ -95,38 +84,37 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <h2>
-                    day, month 29
-                </h2>
+                <p id="pop-up-day"></p>
+                <h2 id="pop-up-date"></h2>
                 
                 <form id="mood-otd" action="/motd" method="POST">
-                    <%# <!-- Date --> %>
+                    <%# Date %>
                     <label for="date">Choose date:</label>
                     <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
                     <div class="selectContainer block">
-                        <%# <!-- Positive --> %>
+                        <%# Positive %>
                         <input type="radio" name="overallMood" id="overallPositive" value="positive" required>
                         <label for="overallPositive" >Positive</label>
-                        <%# <!-- Neutral --> %>
+                        <%# Neutral %>
                         <input type="radio" name="overallMood" id="overallNeutral" value="neutral" required>
                         <label for="overallNeutral" >Neutral</label>
-                        <%# <!-- Negative --> %>
+                        <%# Negative %>
                         <input type="radio" name="overallMood" id="overallNegative" value="negative" required>
                         <label for="overallNegative" >Negative</label>
                     </div>
                 </form>
-                <%# <!-- Button --> %>
+                <%# Button %>
                 <div class="buttons block">
                     <button form="mood-otd" type="submit">Submit</button>
                     <button id="delete">Delete entry</button>
                 </div>
             </section>
         </div>
-        <%# <!-- Mood display of year --> %>
+        <%# Mood display of year %>
         <section class="moodsForYear">
-            <%# <!-- loop to display a box for each day of the year --> %>
+            <%# loop to display a box for each day of the year %>
             <% for (let i = 0; i < idsDaysOfYear.length; i++) {%>
-                <div class="dayBox" id="<%= 'date_' + idsDaysOfYear[i] %>">
+                <div class="<%= `${i} dayBox` %>" id="<%= 'date_' + idsDaysOfYear[i] %>">
                     <div class="dayBoxBubble <%= 'bubble_' + idsDaysOfYear[i] %>">
                         <%= `${yearObj[i].month_long.toLowerCase()} ${yearObj[i].date}` %>
                     </div>
