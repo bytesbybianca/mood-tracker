@@ -26,10 +26,6 @@ body {
      color: #CAD0D7;
 }
 
-.hidden {
-     display: none;
-}
-
 #wrapper {
      /* display: flex; */
      position: relative;
@@ -66,10 +62,45 @@ body {
      cursor: g;
 }
 
+/* Pop up box */
+.pop-up-container {
+     background-color: rgba(0, 0, 0, .4);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: fixed;
+     opacity: 0;
+     pointer-events: none;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     width: 100vw;
+}
+
+.pop-up-container.show,
+.dayBoxBubble.show,
+.dayBoxPointer.show {
+     pointer-events: auto;
+     opacity: 1;
+}
+
+.pop-up {
+     background-color: rgb(113, 113, 113);
+     border-radius: 5px;
+     box-shadow: 0 8px 10px rgba(255, 255, 255, .3);
+     padding: 1.5rem 3rem;
+     width: 35vw;
+     max-width: 100%;
+     text-align: center;
+}
+
+/* Bubble */
 .dayBoxBubble {
      background-color: ivory;
      color: black;
      position: absolute;
+     opacity: 0;
+     pointer-events: none;
      top: -2.1rem;
      left: -3rem;
      height: 1.6rem;
@@ -90,36 +121,9 @@ body {
 	border-radius: 0 0 2px 0;
 	margin-top: -15px;
 	position: relative;
-	/* left: calc(0.5vw - 0px); */
-}
-
-.pop-up-container {
-     background-color: rgba(0, 0, 0, .4);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     position: fixed;
      opacity: 0;
      pointer-events: none;
-     top: 0;
-     left: 0;
-     height: 100vh;
-     width: 100vw;
-}
-
-.pop-up-container.show {
-     pointer-events: auto;
-     opacity: 1;
-}
-
-.pop-up {
-     background-color: rgb(113, 113, 113);
-     border-radius: 5px;
-     box-shadow: 0 8px 10px rgba(255, 255, 255, .3);
-     padding: 1.5rem 3rem;
-     width: 35vw;
-     max-width: 100%;
-     text-align: center;
+	/* left: calc(0.5vw - 0px); */
 }
 
 /******************************************
@@ -133,12 +137,6 @@ body {
 
 h1 {
      text-align: center;
-}
-
-.close-button {
-     background-color: transparent;
-     border: 0px solid red;
-     color: white;
 }
 
 .positive {
