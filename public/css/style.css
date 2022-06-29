@@ -67,10 +67,11 @@ body {
 }
 
 .dayBoxBubble {
-     background-color: white;
+     background-color: ivory;
      color: black;
      position: absolute;
      top: -2.1rem;
+     left: -3rem;
      height: 1.6rem;
      width: 7rem;
      padding: .35rem;
@@ -89,41 +90,42 @@ body {
 	border-radius: 0 0 2px 0;
 	margin-top: -15px;
 	position: relative;
-	left: calc(0.5vw - 0px);
+	/* left: calc(0.5vw - 0px); */
 }
 
-.shade {
-     min-height: 100vh;
-     min-width: 100vw;
-     top: 0;
-     position: fixed;
+.pop-up-container {
      background-color: rgba(0, 0, 0, .4);
-     z-index: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: fixed;
+     opacity: 0;
+     pointer-events: none;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     width: 100vw;
 }
 
-.moodPicker {
-     background-color: rgba(0, 0, 0, .95);
-     width: 40rem;
-     height: 20rem;
-     position: fixed;
-     top: 0;
-     bottom: 0;
-     left: 0;
-     right: 0;
-     margin: auto;
-     z-index: 2;
+.pop-up-container.show {
+     pointer-events: auto;
+     opacity: 1;
+}
+
+.pop-up {
+     background-color: rgb(113, 113, 113);
+     border-radius: 5px;
+     box-shadow: 0 8px 10px rgba(255, 255, 255, .3);
+     padding: 1.5rem 3rem;
+     width: 35vw;
+     max-width: 100%;
+     text-align: center;
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-header {
 
-}
-
-footer {
-
-}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -131,10 +133,6 @@ footer {
 
 h1 {
      text-align: center;
-}
-
-.moodPicker {
-     padding: 2rem;
 }
 
 .close-button {

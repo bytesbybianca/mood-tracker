@@ -1,9 +1,9 @@
 // defining dates
 let today = new Date()
-let year = today.getFullYear();
+const year = today.getFullYear();
 let month = today.getMonth() + 1;
 const monthName = today.toLocaleString('default', { month: 'long' })
-let day = today.getDate();
+const day = today.getDate();
 
 if (day < 10) {
     day = '0' + day;
@@ -16,14 +16,13 @@ if (day < 10) {
 today = `${year}-${month}-${day}`
 
 // setting max date as today
-let setDate = document.querySelector('#date')
+const setDate = document.querySelector('#date')
 setDate.setAttribute('max', today);
 setDate.setAttribute('value', today);
 
-let dayBox = document.querySelectorAll('.dayBox')
-const moodPickerForm = document.querySelector('.moodPicker')
-const shade = document.querySelector('.shade')
-const closeButton = document.querySelector('.close-button')
+const dayBox = document.querySelectorAll('.dayBox')
+const popUpContainer = document.querySelector('.pop-up-container')
+const close = document.querySelector('#close')
 
 dayBox.forEach(box => box.addEventListener('mouseover', () => {
     let idDate = box.id.slice(5)
@@ -39,19 +38,12 @@ dayBox.forEach(box => box.addEventListener('mouseout', () => {
 
 dayBox.forEach(box => box.addEventListener('click', () => {
     let idBoxClicked = box.id.slice(5)
-    moodPickerForm.classList.toggle('hidden')
-    shade.classList.toggle('hidden')
     setDate.setAttribute('value', idBoxClicked);
+    popUpContainer.classList.add('show');
 }))
 
-shade.addEventListener('click', () => {
-    moodPickerForm.classList.toggle('hidden')
-    shade.classList.toggle('hidden')
-})
-
-closeButton.addEventListener('click', () => {
-    moodPickerForm.classList.toggle('hidden')
-    shade.classList.toggle('hidden')
+close.addEventListener('click', () => {
+    popUpContainer.classList.remove('show')
 })
 
 function setBoxColorClass() {
