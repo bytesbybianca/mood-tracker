@@ -24,7 +24,12 @@
 body {
      background-color: #12171D;
      color: #CAD0D7;
+     font-family: 'Quicksand', sans-serif;
 }
+
+/******************************************
+/* LAYOUT
+/*******************************************/
 
 #wrapper {
      /* display: flex; */
@@ -75,6 +80,7 @@ body {
      left: 0;
      height: 100vh;
      width: 100vw;
+     z-index: 1;
 }
 
 .pop-up-container.show,
@@ -82,13 +88,18 @@ body {
 .dayBoxPointer.show {
      pointer-events: auto;
      opacity: 1;
+     transition: opacity 0.2s ease;
+}
+
+.pop-up-container.show {
+     transition: opacity 0.3s ease;
 }
 
 .pop-up {
-     background-color: rgb(113, 113, 113);
+     background-color: rgba(0, 0, 0, .8);
      border-radius: 5px;
-     box-shadow: 0 8px 10px rgba(255, 255, 255, .3);
-     padding: 1.5rem 3rem;
+     box-shadow: 0 3px 20px rgba(255, 255, 255, .05);
+     padding: 2rem 3rem 3.5rem 3rem;
      width: 35vw;
      max-width: 100%;
      text-align: center;
@@ -99,10 +110,10 @@ body {
      background-color: ivory;
      color: black;
      position: absolute;
-     opacity: 0;
-     pointer-events: none;
      top: -2.1rem;
      left: -3rem;
+     opacity: 0;
+     pointer-events: none;
      height: 1.6rem;
      width: 7rem;
      padding: .35rem;
@@ -126,10 +137,22 @@ body {
 	/* left: calc(0.5vw - 0px); */
 }
 
-/******************************************
-/* LAYOUT
-/*******************************************/
+.block {
+     margin: 1rem auto;
+}
 
+.selectContainer label {
+     margin-left: .25rem;
+     margin-right: 1rem;
+}
+
+.buttons.block {
+     margin-top: 2rem;
+}
+
+.buttons * {
+     margin: .25rem;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -137,6 +160,12 @@ body {
 
 h1 {
      text-align: center;
+}
+
+.close-container {
+     text-align: right;
+     margin: 0;
+     padding: 0;
 }
 
 .positive {
@@ -152,4 +181,38 @@ h1 {
 .negative {
      background-color: rgb(137, 42, 58);
      border: 1px solid rgba(128, 128, 128, 0.05);
+}
+
+#close {
+     background-color: rgba(255, 255, 255, .1);
+     border-radius: 1px;
+     color: rgba(255, 255, 255, .6);
+     border: 0px solid red;
+     margin: 0;
+}
+
+#close:hover {
+     background-color: rgba(255, 255, 255, .2);
+     transition: all 0.3s ease-in-out;
+}
+
+#date {
+     background-color: rgba(255, 255, 255, .1);
+     border: 1px solid rgba(255, 255, 255, .11);
+     color: ivory;
+     margin-left: .5rem;
+     padding: .25rem;
+}
+
+#date:hover, .buttons *:hover {
+     background-color: rgba(255, 255, 255, .12);
+     border: 1px solid rgba(255, 255, 255, .13);
+     transition: all 0.3s ease-in-out;
+}
+
+.buttons * {
+     background-color: rgba(255, 255, 255, .1);
+     border: 1px solid rgba(255, 255, 255, .11);
+     color: rgba(255, 255, 255, .6);
+     padding: .35rem .55rem;
 }
