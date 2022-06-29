@@ -86,10 +86,10 @@
             <%# <!-- loop to display a box for each day of the year --> %>
             <% for (let i = 0; i < allDaysOfYear.length; i++) {%>
                 <div class="dayBox" id="<%= 'date_' + idsDaysOfYear[i] %>">
-                    <div class="dayBoxBubble <%= 'bubble_' + idsDaysOfYear[i] %> hidden">
+                    <div class="dayBoxBubble <%= 'bubble_' + idsDaysOfYear[i] %>">
                         <%= allDaysOfYear[i].toLowerCase() %>
                     </div>
-                    <div class="dayBoxPointer <%= 'bubble_' + idsDaysOfYear[i] %> hidden">
+                    <div class="dayBoxPointer <%= 'bubble_' + idsDaysOfYear[i] %>">
                     </div>
                 </div>
             <% } %>
