@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>Mood Tracker</title>
@@ -16,16 +19,64 @@
             </h1>
         </header>
 
+           <%# <!-- variables for today --> %>
+           <% let today = new Date() %>
+           <% let year = today.getFullYear() %>
+           <% let month = today.getMonth() + 1 %>
+           <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
+           <% let day = today.getDate() %>
+   
+           <% let weekdays = new Array(7);
+               weekdays[0] = "Sunday";
+               weekdays[1] = "Monday";
+               weekdays[2] = "Tuesday";
+               weekdays[3] = "Wednesday";
+               weekdays[4] = "Thursday";
+               weekdays[5] = "Friday";
+               weekdays[6] = "Saturday"; %>
+       <% let dayOfWeek = weekdays[today.getDay()] %>
+   
+           <%# <!-- variables for start and end of year --> %>
+           <% let dayOfYear = new Date(year, 0, 1) %>
+           <% let lastDayOfYear = new Date(year, 11, 31) %>
+   
+           <%# <!-- Loop for all days in the year for diplay on boxes, format short month name and date --> %>
+           <% let allDaysOfYear = []; %>
+           <%# <!-- Loop for all days in the year for id name, formatted YYYY-MM-DD --> %>
+           <% let idsDaysOfYear = []; %>
+   
+           <%# <!-- format days and months to match calendar values --> %>
+           <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
+               <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
+               <% let idDay = new Date(dayOfYear).getDate() %>
+               
+                   <% if (idDay < 10) { %>
+                       <% idDay = '0' + idDay; %>
+                   <% } %>
+                   
+                   <% if (idMonth < 10) { %>
+                       <% idMonth = '0' + idMonth; %>
+                   <% }  %>
+   
+               <%# <!-- push into arrays --> %>
+               <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'long' })} ${new Date(dayOfYear).getDate()}`); %>
+               <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
+           <% } %>
+
         <%# <!-- Mood Picker Pop-up --> %>
         <div class="pop-up-container">
             <section class="pop-up">
-                <button id="close" aria-label="Dismiss alert" type="button" data-close>
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="close-container">
+                    <button id="close" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <h2>
+                    day, month 29
+                </h2>
                 
                 <form id="mood-otd" action="/motd" method="POST">
                     <%# <!-- Date --> %>
-                    <%# <!-- Fix values and max date --> %>
                     <label for="date">Choose date:</label>
                     <input type="date" id="date" name="date" class="block"  value="" min="2022-01-01" max="" required>
                     <div class="selectContainer block">
@@ -41,45 +92,12 @@
                     </div>
                 </form>
                 <%# <!-- Button --> %>
-                <button form="mood-otd" type="submit">Submit</button>
-                <button id="delete">Delete entry</button>
+                <div class="buttons block">
+                    <button form="mood-otd" type="submit">Submit</button>
+                    <button id="delete">Delete entry</button>
+                </div>
             </section>
         </div>
-
-        <%# <!-- variables for today --> %>
-        <% let today = new Date() %>
-        <% let year = today.getFullYear() %>
-        <% let month = today.getMonth() + 1 %>
-        <% let dayOfWeek = today.getDay() %>
-        <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
-        <% let day = today.getDate() %>
-
-        <%# <!-- variables for start and end of year --> %>
-        <% let dayOfYear = new Date(year, 0, 1) %>
-        <% let lastDayOfYear = new Date(year, 11, 31) %>
-
-        <%# <!-- Loop for all days in the year for diplay on boxes, format short month name and date --> %>
-        <% let allDaysOfYear = []; %>
-        <%# <!-- Loop for all days in the year for id name, formatted YYYY-MM-DD --> %>
-        <% let idsDaysOfYear = []; %>
-
-        <%# <!-- format days and months to match calendar values --> %>
-        <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
-            <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
-            <% let idDay = new Date(dayOfYear).getDate() %>
-            
-                <% if (idDay < 10) { %>
-                    <% idDay = '0' + idDay; %>
-                <% } %>
-                
-                <% if (idMonth < 10) { %>
-                    <% idMonth = '0' + idMonth; %>
-                <% }  %>
-
-            <%# <!-- push into arrays --> %>
-            <% allDaysOfYear.push(`${new Date(dayOfYear).toLocaleString('default', { month: 'long' })} ${new Date(dayOfYear).getDate()}`); %>
-            <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
-        <% } %>
 
         <%# <!-- Mood display of year --> %>
         <section class="moodsForYear">
