@@ -13,12 +13,53 @@ if (day < 10) {
     month = '0' + month;
  } 
 
-today = `${year}-${month}-${day}`
+let todayFormatted = `${year}-${month}-${day}`
+
+// year obj
+let weekdays = new Array(7);
+    weekdays[0] = "Sunday";
+    weekdays[1] = "Monday";
+    weekdays[2] = "Tuesday";
+    weekdays[3] = "Wednesday";
+    weekdays[4] = "Thursday";
+    weekdays[5] = "Friday";
+    weekdays[6] = "Saturday";
+let dayOfWeek = weekdays[today.getDay()]
+let dayOfYear = new Date(year, 0, 1)
+let lastDayOfYear = new Date(year, 11, 31)
+let yearObj = new Array()
+
+for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {
+    let idMonth = new Date(dayOfYear).getMonth() + 1 
+    let idDay = new Date(dayOfYear).getDate() 
+    let dayCounter = 1 
+    let i = 0 
+    
+    dayOfWeek = weekdays[dayOfYear.getDay()] 
+        if (idDay < 10) { 
+            idDay = '0' + idDay; 
+        } 
+        
+        if (idMonth < 10) { 
+            idMonth = '0' + idMonth; 
+        }  
+    yearObj.push({
+                    full_date: `${year}-${idMonth}-${idDay}`,
+                    month_long: `${new Date(dayOfYear).toLocaleString('default', { month: 'long' })}`,
+                    month_short: `${new Date(dayOfYear).toLocaleString('default', { month: 'short' })}`,
+                    date: `${new Date(dayOfYear).getDate()}`,
+                    year: year,
+                    day: dayOfWeek,
+                    day_of_year: dayCounter,
+                })
+     dayCounter++ 
+     i++ 
+} 
 
 // setting max date as today
 const setDate = document.querySelector('#date')
-setDate.setAttribute('max', today);
-setDate.setAttribute('value', today);
+setDate.setAttribute('max', todayFormatted);
+setDate.setAttribute('value', todayFormatted);
 
 const dayBox = document.querySelectorAll('.dayBox')
 const popUpContainer = document.querySelector('.pop-up-container')
@@ -60,11 +101,11 @@ dayBox.forEach(box => box.addEventListener('click', () => {
     // set the value of date picker to the date clicked
     setDate.setAttribute('value', idBoxClicked);
     let dateErrorBubble = document.querySelector(`.error_${idBoxClicked}`)
-    if(idBoxClicked <= today) {
+    if(idBoxClicked <= todayFormatted) {
         // add class 'show' pop up box
         popUpContainer.classList.add('show');
-    } else if(idBoxClicked > today){
-        console.log(idBoxClicked > today)
+    } else if(idBoxClicked > todayFormatted){
+        console.log(idBoxClicked > todayFormatted)
         dateErrorBubble.classList.add('show');
     }
 }))
@@ -117,4 +158,4 @@ deleteEntry.addEventListener('click', _ => {
         .catch(error => console.error(error))
   })
 
-  console.log(today > '2022-07-03')
+  console.log(todayFormatted > '2022-07-03')
