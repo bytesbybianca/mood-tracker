@@ -33,8 +33,8 @@ dayBox.forEach(box => box.addEventListener('mouseover', () => {
     let idDate = box.id.slice(5)
     // define the bubble and pointer elements
     let dayBoxBubble = document.querySelectorAll(`.bubble_${idDate}`)
-    // add class 'show' to both bubble and pointer elements
-    dayBoxBubble.forEach(bubble => bubble.classList.add('show'))
+        // add class 'show' to both bubble and pointer elements
+        dayBoxBubble.forEach(bubble => bubble.classList.add('show'))
 }))
 
 // Bubble: mouse out to hide bubble
@@ -44,8 +44,10 @@ dayBox.forEach(box => box.addEventListener('mouseout', () => {
     let idDate = box.id.slice(5)
     // define the bubble and pointer elements
     let dayBoxBubble = document.querySelectorAll(`.bubble_${idDate}`)
+    let dateErrorBubble = document.querySelector(`.error_${idDate}`)
     // remove class 'show' to hide both bubble and pointer elements
     dayBoxBubble.forEach(bubble => bubble.classList.remove('show'))
+    dateErrorBubble.classList.remove('show')
 }))
 
 /* POP UP */
@@ -57,8 +59,14 @@ dayBox.forEach(box => box.addEventListener('click', () => {
     let idBoxClicked = box.id.slice(5)
     // set the value of date picker to the date clicked
     setDate.setAttribute('value', idBoxClicked);
-    // add class 'show' pop up box
-    popUpContainer.classList.add('show');
+    let dateErrorBubble = document.querySelector(`.error_${idBoxClicked}`)
+    if(idBoxClicked <= today) {
+        // add class 'show' pop up box
+        popUpContainer.classList.add('show');
+    } else if(idBoxClicked > today){
+        console.log(idBoxClicked > today)
+        dateErrorBubble.classList.add('show');
+    }
 }))
 
 // When you click the X in the pop up box,
@@ -108,3 +116,5 @@ deleteEntry.addEventListener('click', _ => {
         })
         .catch(error => console.error(error))
   })
+
+  console.log(today > '2022-07-03')

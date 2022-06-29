@@ -85,7 +85,8 @@ body {
 
 .pop-up-container.show,
 .dayBoxBubble.show,
-.dayBoxPointer.show {
+.dayBoxPointer.show,
+.dateError.show {
      pointer-events: auto;
      opacity: 1;
      transition: opacity 0.2s ease;
@@ -135,6 +136,24 @@ body {
      opacity: 0;
      pointer-events: none;
 	/* left: calc(0.5vw - 0px); */
+}
+
+.dateError {
+     background-color: orange;
+     color: rgb(45, 29, 0);
+     border: 2px solid rgb(255, 183, 49);
+     position: absolute;
+     top: -4.25rem;
+     /* left: -5rem; */
+     opacity: 0;
+     pointer-events: none;
+     height: 1.6rem;
+     width: 10rem;
+     padding: .15rem;
+     z-index: 3;
+     text-align: center;
+     font-size: .85rem;
+     left: calc(0.5vw - 5rem);
 }
 
 .block {
