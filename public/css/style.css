@@ -43,6 +43,13 @@ body {
      flex-wrap: wrap;
 }
 
+@media screen and (max-width: 425px) {
+     #wrapper {
+          min-height: 80vh;
+          min-width: 90vw;
+     }
+}
+
 header, .moodsForYear {
      min-width: 100vw;
 }
@@ -53,11 +60,20 @@ header, .moodsForYear {
      flex-wrap: wrap;
      gap: .25rem;
      height: 180px;
-     width: 90%;
+     /* width: 90%; */
      justify-content: center;
-     /* align-items: center; */
      align-content: center;
      margin: 0 auto;
+}
+
+@media screen and (max-width: 425px) {
+     .moodsForYear {
+          flex-direction: row;
+          height: 100%;
+          width: 100%;
+          margin: 0 auto;
+          padding: 0 1rem;
+     }
 }
 
 .dayBox {
