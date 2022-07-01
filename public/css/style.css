@@ -83,11 +83,16 @@ header, .moodsForYear {
 
 .dayLabel {
      height: 15px;
-     margin-right: .25rem;
+     margin-right: .55rem;
 }
 
 .monthLabel {
      max-width: 0px;
+     margin-bottom: .55rem;
+}
+
+.dayLabel, .monthLabel {
+     font-size: .85rem;
 }
 
 .dayBox {
