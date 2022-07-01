@@ -67,9 +67,9 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             )
             .then(result => {
                 if (result.deletedCount === 0) {
-                  return res.json('No more monsters')
+                  return res.json('No data to delete')
                 }
-                res.json(`Got em!`)
+                res.json(`Deleted!`)
               })
               .catch(error => console.error(error))
           })
