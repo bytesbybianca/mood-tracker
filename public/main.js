@@ -163,7 +163,11 @@ deleteEntry.addEventListener('click', _ => {
         if (res.ok) return res.json()
       })
       .then(response => {
-            window.location.reload(true)
+          if (response === 'No data to delete') {
+            document.querySelector('#delete-error').textContent = 'No mood to delete on this date.'
+          } else {
+            window.location.reload(true)   
+          }
         })
         .catch(error => console.error(error))
   })

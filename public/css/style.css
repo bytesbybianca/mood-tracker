@@ -235,3 +235,7 @@ h1 {
      color: rgba(255, 255, 255, .6);
      padding: .35rem .55rem;
 }
+
+#delete-error {
+     color: orange;
+}
