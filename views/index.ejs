@@ -113,6 +113,16 @@
         </div>
         <%# Mood display of year %>
         <section class="moodsForYear">
+            <div class="dayLabelsContainer">
+                <div class="dayLabel"></div>
+                <div class="dayLabel">Mon</div>
+                <div class="dayLabel"></div>
+                <div class="dayLabel">Wed</div>
+                <div class="dayLabel"></div>
+                <div class="dayLabel">Fri</div>
+                <div class="dayLabel"></div>
+            </div>
+            <div class="week-divider"></div>
             <%# loop to display a box for each day of the year %>
             <% for (let i = 0; i < idsDaysOfYear.length; i++) {%>
                 <div class="<%= `${i} dayBox` %>" id="<%= 'date_' + idsDaysOfYear[i] %>">
@@ -125,6 +135,12 @@
                         Date is in the future!
                     </div>
                 </div>
+                <% if(yearObj[i].day == 'Saturday') {%>
+                    <div class="week-divider"></div>
+                    <% if(yearObj[i].date <= 7) { %>
+                        <div class="monthLabel"><%= yearObj[i].month_short %></div>
+                    <% } %>
+                <% } %>
             <% } %>
         </section>
     </div>

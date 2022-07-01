@@ -54,14 +54,15 @@ header, .moodsForYear {
      min-width: 100vw;
 }
 
-.moodsForYear {
+.moodsForYear, .dayLabelsContainer  {
      display: flex;
      flex-direction: column;
      flex-wrap: wrap;
-     gap: .25rem;
+     gap: .125rem;
      height: 180px;
      /* width: 90%; */
-     justify-content: center;
+     justify-content: flex-end;
+     align-items: flex-end;
      align-content: center;
      margin: 0 auto;
 }
@@ -76,8 +77,21 @@ header, .moodsForYear {
      }
 }
 
+.week-divider {
+     flex-basis: 100%;
+}
+
+.dayLabel {
+     height: 15px;
+     margin-right: .25rem;
+}
+
+.monthLabel {
+     max-width: 0px;
+}
+
 .dayBox {
-     display: flex;
+     /* display: flex; */
      background-color: #1E2126;
      border-radius: 10%;
      border: 1px solid rgba(128, 128, 128, 0.05);
