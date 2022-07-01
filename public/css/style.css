@@ -32,10 +32,19 @@ body {
 /*******************************************/
 
 #wrapper {
-     /* display: flex; */
+     display: flex;
      position: relative;
      min-height: 100vh;
-     width: 100%;
+     min-width: 100vw;
+     margin: 0;
+     padding: 0;
+     align-items: center;
+     align-content: center;
+     flex-wrap: wrap;
+}
+
+header, .moodsForYear {
+     min-width: 100vw;
 }
 
 .moodsForYear {
@@ -179,6 +188,15 @@ body {
 
 h1 {
      text-align: center;
+     margin: 0;
+     padding: .25rem;
+}
+
+h2 {
+     text-align: center;
+     margin: 0 0 1rem 0;
+     padding: .25rem;
+     font-size: 1.25rem;
 }
 
 .close-container {

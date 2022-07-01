@@ -12,13 +12,6 @@
     <title>Mood Tracker</title>
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <h1>
-                Mood Tracker
-            </h1>
-        </header>
-
            <%# variables for today %>
            <% let today = new Date() %>
            <% let year = today.getFullYear() %>
@@ -76,6 +69,13 @@
                 <% i++ %>
            <% } %>
 
+    <div id="wrapper">
+        <header>
+            <h1>
+                Mood Tracker
+            </h1>
+            <h2><%= year %></h2>
+        </header>
         <%# Mood Picker Pop-up %>
         <div class="pop-up-container">
             <section class="pop-up">
