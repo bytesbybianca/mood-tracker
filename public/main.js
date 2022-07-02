@@ -124,6 +124,7 @@ dayBox.forEach(box => box.addEventListener('click', () => {
 close.addEventListener('click', () => {
     // remove class 'show' to hide pop up box
     popUpContainer.classList.remove('show')
+    document.querySelector('#delete-error').textContent = ''
 })
 
 /* DAY BOX COLORS */
@@ -149,7 +150,7 @@ setBoxColorClass()
 /* DELETING ENTRIES */
 const deleteEntry = document.querySelector('#delete')
 
-deleteEntry.addEventListener('click', _ => {
+deleteEntry.addEventListener('click', () => {
     
     fetch('/motd', {
       method: 'delete',
