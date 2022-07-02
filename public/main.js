@@ -3,7 +3,7 @@ let today = new Date()
 const year = today.getFullYear();
 let month = today.getMonth() + 1;
 const monthName = today.toLocaleString('default', { month: 'long' })
-const day = today.getDate();
+let day = today.getDate();
 
 if (day < 10) {
     day = '0' + day;
