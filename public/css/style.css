@@ -234,12 +234,6 @@ h2 {
      font-size: 1.25rem;
 }
 
-.close-container {
-     text-align: right;
-     margin: 0;
-     padding: 0;
-}
-
 .positive {
      background-color: rgb(87, 135, 87);
      border: 1px solid rgba(128, 128, 128, 0.05);
@@ -255,6 +249,12 @@ h2 {
      border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
+.close-container {
+     text-align: right;
+     margin: 0;
+     padding: 0;
+}
+
 #close {
      background-color: rgba(255, 255, 255, .1);
      border-radius: 1px;
@@ -266,6 +266,14 @@ h2 {
 #close:hover {
      background-color: rgba(255, 255, 255, .2);
      transition: all 0.3s ease-in-out;
+}
+
+#pop-up-day, #pop-up-date {
+     margin: 0;
+}
+
+#pop-up-date {
+     font-size: 2rem;
 }
 
 #date {

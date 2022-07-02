@@ -56,7 +56,7 @@ for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate(
      i++ 
 } 
 
-console.log(yearObj[0])
+console.log(yearObj)
 
 // setting max date as today
 const setDate = document.querySelector('#date')
@@ -100,6 +100,7 @@ dayBox.forEach(box => box.addEventListener('mouseout', () => {
 dayBox.forEach(box => box.addEventListener('click', () => {
     // isolate number from class name to target index in yearObj
     let dayBoxDate = box.className.split(' ').filter(x => Number(x) || x == '0').toString()
+    console.log(dayBoxDate)
     // define the date from the box's id ('date_' + YYYY-MM-DD)
     let idBoxClicked = box.id.slice(5)
     // set the value of date picker to the date clicked
@@ -119,6 +120,14 @@ dayBox.forEach(box => box.addEventListener('click', () => {
         dateErrorBubble.classList.add('show');
     }
 }))
+
+setDate.addEventListener('change', () => {
+    let selectedDateObj = yearObj.find(x => x.full_date === `${setDate.value}`)
+    // add day of the week in pop up box
+    document.querySelector('#pop-up-day').textContent = `${selectedDateObj.day}`
+    // add month, date, year in pop up box
+    document.querySelector('#pop-up-date').textContent = `${selectedDateObj.month_long} ${selectedDateObj.date}, ${selectedDateObj.year}`
+})
 
 // When you click the X in the pop up box,
 close.addEventListener('click', () => {
