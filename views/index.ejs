@@ -12,62 +12,62 @@
     <title>Mood Tracker</title>
 </head>
 <body>
-           <%# variables for today %>
-           <% let today = new Date() %>
-           <% let year = today.getFullYear() %>
-           <% let month = today.getMonth() + 1 %>
-           <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
-           <% let day = today.getDate() %>
-   
-           <% let weekdays = new Array(7);
-               weekdays[0] = "Sunday";
-               weekdays[1] = "Monday";
-               weekdays[2] = "Tuesday";
-               weekdays[3] = "Wednesday";
-               weekdays[4] = "Thursday";
-               weekdays[5] = "Friday";
-               weekdays[6] = "Saturday"; %>
-            <% let dayOfWeek = weekdays[today.getDay()] %>
-   
-           <%# variables for start and end of year %>
-           <% let dayOfYear = new Date(year, 0, 1) %>
-           <% let lastDayOfYear = new Date(year, 11, 31) %>
-   
-           <%# Loop for all days in the year for diplay on boxes, format short month name and date %>
-           <%# Loop for all days in the year for id name, formatted YYYY-MM-DD %>
-           <% let idsDaysOfYear = []; %>
-           <% let yearObj = new Array() %>
-   
-           <%# format days and months to match calendar values %>
-           <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
-               <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
-               <% let idDay = new Date(dayOfYear).getDate() %>
-               <% let dayCounter = 1 %>
-               <% let i = 0 %>
-               <% dayOfWeek = weekdays[dayOfYear.getDay()] %>
-                   <% if (idDay < 10) { %>
-                       <% idDay = '0' + idDay; %>
-                   <% } %>
-                   
-                   <% if (idMonth < 10) { %>
-                       <% idMonth = '0' + idMonth; %>
-                   <% }  %>
-   
-               <%# push into arrays %>
-               <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
-               <% yearObj.push({
-                        full_date: `${year}-${idMonth}-${idDay}`,
-                        month_long: `${new Date(dayOfYear).toLocaleString('default', { month: 'long' })}`,
-                        month_short: `${new Date(dayOfYear).toLocaleString('default', { month: 'short' })}`,
-                        date: `${new Date(dayOfYear).getDate()}`,
-                        year: year,
-                        day: dayOfWeek,
-                        day_of_year: dayCounter,
-                      })
-                %>
-                <% dayCounter++ %>
-                <% i++ %>
-           <% } %>
+    <%# variables for today %>
+    <% let today = new Date() %>
+    <% let year = today.getFullYear() %>
+    <% let month = today.getMonth() + 1 %>
+    <% let monthName = today.toLocaleString('default', { month: 'long' }) %>
+    <% let day = today.getDate() %>
+
+    <% let weekdays = new Array(7);
+        weekdays[0] = "Sunday";
+        weekdays[1] = "Monday";
+        weekdays[2] = "Tuesday";
+        weekdays[3] = "Wednesday";
+        weekdays[4] = "Thursday";
+        weekdays[5] = "Friday";
+        weekdays[6] = "Saturday"; %>
+    <% let dayOfWeek = weekdays[today.getDay()] %>
+
+    <%# variables for start and end of year %>
+    <% let dayOfYear = new Date(year, 0, 1) %>
+    <% let lastDayOfYear = new Date(year, 11, 31) %>
+
+    <%# Loop for all days in the year for diplay on boxes, format short month name and date %>
+    <%# Loop for all days in the year for id name, formatted YYYY-MM-DD %>
+    <% let idsDaysOfYear = []; %>
+    <% let yearObj = new Array() %>
+
+    <%# format days and months to match calendar values %>
+    <% for (dayOfYear; dayOfYear <= lastDayOfYear; dayOfYear.setDate(dayOfYear.getDate() + 1)) {%>
+        <% let idMonth = new Date(dayOfYear).getMonth() + 1 %>
+        <% let idDay = new Date(dayOfYear).getDate() %>
+        <% let dayCounter = 1 %>
+        <% let i = 0 %>
+        <% dayOfWeek = weekdays[dayOfYear.getDay()] %>
+            <% if (idDay < 10) { %>
+                <% idDay = '0' + idDay; %>
+            <% } %>
+            
+            <% if (idMonth < 10) { %>
+                <% idMonth = '0' + idMonth; %>
+            <% }  %>
+
+        <%# push into arrays %>
+        <% idsDaysOfYear.push(`${year}-${idMonth}-${idDay}`); %>
+        <% yearObj.push({
+                full_date: `${year}-${idMonth}-${idDay}`,
+                month_long: `${new Date(dayOfYear).toLocaleString('default', { month: 'long' })}`,
+                month_short: `${new Date(dayOfYear).toLocaleString('default', { month: 'short' })}`,
+                date: `${new Date(dayOfYear).getDate()}`,
+                year: year,
+                day: dayOfWeek,
+                day_of_year: dayCounter,
+                })
+        %>
+        <% dayCounter++ %>
+        <% i++ %>
+    <% } %>
 
     <div id="wrapper">
         <header>
