@@ -225,6 +225,7 @@ h1 {
      text-align: center;
      margin: 0;
      padding: .25rem;
+     color: #75A5FC;
 }
 
 h2 {
@@ -235,17 +236,17 @@ h2 {
 }
 
 .positive {
-     background-color: rgb(87, 135, 87);
+     background-color: rgba(117, 165, 252, .85);
      border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
 .neutral {
-     background-color: rgb(121, 121, 121);
+     background-color: rgba(117, 165, 252, .45);
      border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
 .negative {
-     background-color: rgb(137, 42, 58);
+     background-color: rgba(117, 165, 252, .25);
      border: 1px solid rgba(128, 128, 128, 0.05);
 }
 
@@ -274,6 +275,7 @@ h2 {
 
 #pop-up-date {
      font-size: 2rem;
+     color: #75A5FC;
 }
 
 #date {
