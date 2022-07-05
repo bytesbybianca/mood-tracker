@@ -114,6 +114,16 @@ dayBox.forEach(box => box.addEventListener('click', () => {
         document.querySelector('#pop-up-day').textContent = `${yearObj[dayBoxDate].day}`
         // add month, date, year in pop up box
         document.querySelector('#pop-up-date').textContent = `${yearObj[dayBoxDate].month_long} ${yearObj[dayBoxDate].date}, ${yearObj[dayBoxDate].year}`
+        // display notes
+        fetch('/motd')
+        .then(res => res.json())
+        .then(data => {
+            let clickedEntry = data.find(entry => entry.date == idBoxClicked)
+            console.log(data)
+            let emptyNotes = ''
+                document.querySelector('#note-entry').textContent = clickedEntry.notes ? clickedEntry.notes : emptyNotes
+            // console.log(data.map(entry => entry.date == idBoxClicked ? entry.notes : ''))
+        })
     // if date is in the future,
     } else if(idBoxClicked > todayFormatted){
         // show date error
@@ -121,6 +131,8 @@ dayBox.forEach(box => box.addEventListener('click', () => {
     }
 }))
 
+// POP UP BOX
+// Change displayed date header when user changes input value
 setDate.addEventListener('change', () => {
     let selectedDateObj = yearObj.find(x => x.full_date === `${setDate.value}`)
     // add day of the week in pop up box
@@ -133,16 +145,19 @@ setDate.addEventListener('change', () => {
 close.addEventListener('click', () => {
     // remove class 'show' to hide pop up box
     popUpContainer.classList.remove('show')
+    // reset delete error message
     document.querySelector('#delete-error').textContent = ''
+    // reset notes display
+    document.querySelector('#note-entry').textContent = ''
 })
 
-/* DAY BOX COLORS */
-// Add a class to day box to change colors
-function setBoxColorClass() {
+function fetchData() {
     fetch('/motd')
     .then(res => res.json())
     .then(data => {
         data.forEach(entry => {
+            /* DAY BOX COLORS */
+            // Add a class to day box to change colors
             if(entry.overallMood === 'neutral') {
                 document.querySelector(`#date_${entry.date}`).classList.add('neutral');
             } else if(entry.overallMood === 'positive') {
@@ -150,27 +165,17 @@ function setBoxColorClass() {
             } else if(entry.overallMood === 'negative') {
                 document.querySelector(`#date_${entry.date}`).classList.add('negative');
             }
-        })
-    })
-}
-
-setBoxColorClass()
-
-// SHOW IF NOTES EXIST
-function setNoteIndicator() {
-    fetch('/motd')
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(entry => {
+            // NOTES
+            // Show notes indicator if notes exists
             if(entry.notes) {
-                // document.querySelector(`#date_${entry.date} .notes-indicator`).textContent = 'hi'
+                // Add class to show styles if notes exists
                 document.querySelector(`#date_${entry.date} .notes-indicator`).classList.add('show')
             }
         })
     })
 }
 
-setNoteIndicator()
+fetchData()
 
 /* DELETING ENTRIES */
 const deleteEntry = document.querySelector('#delete')

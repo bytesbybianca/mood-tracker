@@ -233,6 +233,10 @@ textarea {
      margin: .25rem;
 }
 
+#note-entry {
+     text-align: left;
+}
+
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
