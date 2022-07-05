@@ -96,7 +96,6 @@ header, .moodsForYear {
 }
 
 .dayBox {
-     /* display: flex; */
      background-color: #1E2126;
      border-radius: 10%;
      border: 1px solid rgba(128, 128, 128, 0.05);
@@ -265,6 +264,17 @@ h2 {
 .negative {
      background-color: rgba(117, 165, 252, .25);
      border: 1px solid rgba(128, 128, 128, 0.05);
+}
+
+.notes-indicator.show {
+     width: 5px;
+     height: 5px;
+     background-color: rgba(212, 227, 255, 0.6);
+     filter: drop-shadow(0 0 0.075rem rgb(65, 99, 162));
+     border-radius: 50%;
+     position: absolute;
+     bottom: .045rem;
+     right: .045rem;
 }
 
 .close-container {

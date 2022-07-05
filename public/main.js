@@ -156,6 +156,22 @@ function setBoxColorClass() {
 
 setBoxColorClass()
 
+// SHOW IF NOTES EXIST
+function setNoteIndicator() {
+    fetch('/motd')
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(entry => {
+            if(entry.notes) {
+                // document.querySelector(`#date_${entry.date} .notes-indicator`).textContent = 'hi'
+                document.querySelector(`#date_${entry.date} .notes-indicator`).classList.add('show')
+            }
+        })
+    })
+}
+
+setNoteIndicator()
+
 /* DELETING ENTRIES */
 const deleteEntry = document.querySelector('#delete')
 
