@@ -48,6 +48,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
                 {
                   $set: {
                     overallMood: req.body.overallMood,
+                    notes: req.body.notes,
                   }
                 },
                 {

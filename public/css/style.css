@@ -209,6 +209,23 @@ header, .moodsForYear {
      margin-right: 1rem;
 }
 
+.notes-container {
+     margin: 2rem auto 0 auto;
+}
+
+.notes-container label {
+     display: block;
+     margin: .25rem 0;
+}
+
+textarea {
+     width: 100%;
+}
+
+.notes-container * {
+     text-align: left;
+}
+
 .buttons.block {
      margin-top: 2rem;
 }
@@ -290,6 +307,14 @@ h2 {
      background-color: rgba(255, 255, 255, .12);
      border: 1px solid rgba(255, 255, 255, .13);
      transition: all 0.3s ease-in-out;
+}
+
+textarea {
+     resize: none;
+     background-color: rgba(255, 255, 255, .1);
+     border: 1px solid rgba(255, 255, 255, .11);
+     color: rgba(255, 255, 255, .6);
+     padding: .35rem .55rem;
 }
 
 .buttons * {
